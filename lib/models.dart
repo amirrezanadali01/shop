@@ -1,15 +1,15 @@
 import 'dart:ffi';
 
-class Products {
+class ProductsModel {
   final int id;
   final String title;
   final int price;
   final String description;
   final String category;
   final String image;
-  final Ratings ratings;
+  final RatingsModel ratings;
 
-  Products(
+  ProductsModel(
       {required this.category,
       required this.description,
       required this.id,
@@ -18,22 +18,22 @@ class Products {
       required this.ratings,
       required this.title});
 
-  factory Products.fromJson(Map json) => Products(
+  factory ProductsModel.fromJson(Map json) => ProductsModel(
       category: json['category'],
       description: json['description'],
       id: json['id'],
       image: json['image'],
       price: json['price'],
       title: json['title'],
-      ratings: Ratings.fromJson(json['rating']));
+      ratings: RatingsModel.fromJson(json['rating']));
 }
 
-class Ratings {
+class RatingsModel {
   final Float rate;
   final int count;
 
-  Ratings({required this.count, required this.rate});
+  RatingsModel({required this.count, required this.rate});
 
-  factory Ratings.fromJson(Map json) =>
-      Ratings(count: json['rate'], rate: json['count']);
+  factory RatingsModel.fromJson(Map json) =>
+      RatingsModel(count: json['rate'], rate: json['count']);
 }
