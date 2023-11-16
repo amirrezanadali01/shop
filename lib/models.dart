@@ -1,9 +1,7 @@
-import 'dart:ffi';
-
 class ProductsModel {
   final int id;
   final String title;
-  final int price;
+  final num price;
   final String description;
   final String category;
   final String image;
@@ -29,8 +27,8 @@ class ProductsModel {
 }
 
 class RatingsModel {
-  final Float rate;
-  final int count;
+  final num rate;
+  final num count;
 
   RatingsModel({required this.count, required this.rate});
 
