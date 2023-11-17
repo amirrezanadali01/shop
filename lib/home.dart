@@ -24,9 +24,41 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        actions: [
+          Consumer<ProductProvider>(
+            builder: (context, value, child) {
+              return Padding(
+                padding: const EdgeInsets.only(right: 5),
+                child: Badge(
+                  alignment: AlignmentDirectional.center,
+                  isLabelVisible: value.productBag.isEmpty ? false : true,
+                  label: Text(value.productBag.length.toString()),
+                  child: const IconButton(
+                    onPressed: null,
+                    // icon: Icons.shopping_bag_outlined,
+                    // color: Colors.black,
+                    // size: 40,
+                    icon: Icon(
+                      Icons.shopping_bag_outlined,
+                      color: Colors.black,
+                      size: 40,
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
+        ],
+        title: const Text(
+          'Shoping',
+          style: TextStyle(color: Colors.black),
+        ),
+      ),
       body: Consumer<ProductProvider>(builder: (context, value, child) {
         if (value.isLoading == true) {
-          return const CircularProgressIndicator();
+          return const Center(child: CircularProgressIndicator());
         } else {
           return MasonryGridView.count(
             crossAxisCount: 2,
@@ -37,8 +69,64 @@ class _HomeState extends State<Home> {
               return Card(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child:
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
                       Image(image: NetworkImage(value.products[index].image)),
+                      const SizedBox(height: 10),
+                      Text(value.products[index].title),
+                      const SizedBox(height: 10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            value.products[index].price.toString(),
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          Row(
+                            children: [
+                              const Icon(
+                                Icons.star,
+                                color: Colors.yellow,
+                              ),
+                              const SizedBox(width: 5),
+                              Text(value.products[index].ratings.count
+                                  .toString()),
+                            ],
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+                      SizedBox(
+                        width: double.infinity,
+                        child: value.productBag.contains(value.products[index])
+                            ? OutlinedButton(
+                                style: OutlinedButton.styleFrom(
+                                  side: const BorderSide(color: Colors.blue),
+                                ),
+                                onPressed: () {
+                                  value.removeProductToCard(index);
+                                },
+                                child: const Text(
+                                  'Remove From Card',
+                                  style: TextStyle(color: Colors.blue),
+                                ),
+                              )
+                            : ElevatedButton(
+                                style: const ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStatePropertyAll(Colors.blue)),
+                                onPressed: () {
+                                  value.addProductToCard(index);
+                                },
+                                child: const Text(
+                                  'Buy',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                      )
+                    ],
+                  ),
                 ),
               );
             },

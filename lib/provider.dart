@@ -6,7 +6,9 @@ import 'package:shop/models.dart';
 
 class ProductProvider extends ChangeNotifier {
   List<ProductsModel> _products = [];
+  List<ProductsModel> _productBag = [];
   List<ProductsModel> get products => _products;
+  List<ProductsModel> get productBag => _productBag;
   bool isLoading = false;
   final ApiProducts apiProduct = ApiProducts();
 
@@ -16,6 +18,16 @@ class ProductProvider extends ChangeNotifier {
     _products = await apiProduct.getAllProducts();
     _products.shuffle();
     isLoading = false;
+    notifyListeners();
+  }
+
+  addProductToCard(index) {
+    _productBag.add(products[index]);
+    notifyListeners();
+  }
+
+  removeProductToCard(index) {
+    _productBag.remove(products[index]);
     notifyListeners();
   }
 }
