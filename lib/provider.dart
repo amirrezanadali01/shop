@@ -14,6 +14,7 @@ class ProductProvider extends ChangeNotifier {
     isLoading = true;
     notifyListeners();
     _products = await apiProduct.getAllProducts();
+    _products.shuffle();
     isLoading = false;
     notifyListeners();
   }
