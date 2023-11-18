@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:provider/provider.dart';
+import 'package:shop/cart_screen.dart';
 
 import 'package:shop/provider.dart';
 
@@ -36,7 +37,8 @@ class _HomeState extends State<Home> {
                   isLabelVisible: value.productBag.isEmpty ? false : true,
                   label: Text(value.productBag.length.toString()),
                   child: IconButton(
-                    onPressed: () => Navigator.pushNamed(context, '/cart'),
+                    onPressed: () =>
+                        Navigator.pushNamed(context, Cart.routname),
                     // icon: Icons.shopping_bag_outlined,
                     // color: Colors.black,
                     // size: 40,
