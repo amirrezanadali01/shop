@@ -35,13 +35,17 @@ class _HomeState extends State<Home> {
                 child: Badge(
                   alignment: AlignmentDirectional.center,
                   isLabelVisible: value.productBag.isEmpty ? false : true,
-                  label: Text(value.productBag.length.toString()),
+                  largeSize: 20,
+                  label: Text(
+                    value.productBag.length.toString(),
+                    style: const TextStyle(fontSize: 15),
+                  ),
                   child: IconButton(
-                    onPressed: () =>
-                        Navigator.pushNamed(context, Cart.routname),
-                    // icon: Icons.shopping_bag_outlined,
-                    // color: Colors.black,
-                    // size: 40,
+                    onPressed: () {
+                      if (value.productBag.isNotEmpty) {
+                        Navigator.pushNamed(context, Cart.routname);
+                      }
+                    },
                     icon: const Icon(
                       Icons.shopping_bag_outlined,
                       color: Colors.black,
@@ -107,7 +111,8 @@ class _HomeState extends State<Home> {
                                   side: const BorderSide(color: Colors.blue),
                                 ),
                                 onPressed: () {
-                                  value.removeProductToCard(index);
+                                  value.removeProductToCard(
+                                      value.products[index]);
                                 },
                                 child: const Text(
                                   'Remove From Card',

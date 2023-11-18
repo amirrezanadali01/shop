@@ -27,7 +27,7 @@ class ProductProvider extends ChangeNotifier {
   }
 
   removeProductToCard(index) {
-    _productBag.remove(products[index]);
+    _productBag.remove(index);
     notifyListeners();
   }
 }
