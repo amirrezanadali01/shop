@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop/cart_screen.dart';
 import 'package:shop/home.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/provider.dart';
@@ -29,7 +30,11 @@ class MyApp extends StatelessWidget {
           // Notice that the counter didn't reset back to zero; the application
           // is not restarted.
         ),
-        home: const Home(),
+        initialRoute: '/',
+        routes: {
+          '/': (context) => const Home(),
+          Cart.routname: (context) => const Cart()
+        },
       ),
     );
   }

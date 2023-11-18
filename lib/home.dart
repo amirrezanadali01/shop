@@ -35,12 +35,12 @@ class _HomeState extends State<Home> {
                   alignment: AlignmentDirectional.center,
                   isLabelVisible: value.productBag.isEmpty ? false : true,
                   label: Text(value.productBag.length.toString()),
-                  child: const IconButton(
-                    onPressed: null,
+                  child: IconButton(
+                    onPressed: () => Navigator.pushNamed(context, '/cart'),
                     // icon: Icons.shopping_bag_outlined,
                     // color: Colors.black,
                     // size: 40,
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.shopping_bag_outlined,
                       color: Colors.black,
                       size: 40,
