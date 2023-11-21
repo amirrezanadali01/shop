@@ -16,4 +16,6 @@ To run this app, you need to have flutter and dart installed on your machine. Yo
 3. Run flutter pub get to install the dependencies.
 4. Run flutter run to launch the app on your emulator or device.
 
+#  Community of developers
 
+I would be grateful if someone else can clean code than code me and push it for me. or develope this project. **just for learning**
