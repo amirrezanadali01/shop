@@ -1,7 +1,7 @@
 # Shopping App
 
-This is a shopping app built with flutter. 
-The purpose of creating this project was to use the provider and clean coding flutter.
+This is a simple shopping app built with flutter. 
+The purpose of creating this project was to use the provider (state management) and provide clean coding in flutter.
 
 # Features
 
